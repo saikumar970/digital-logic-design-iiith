@@ -1910,12 +1910,12 @@ simcir.$ = function() {
         });
       };
       println('{');
-     // println('  "width":' + data.width + ',');
-      //println('  "height":' + data.height + ',');
-      //println('  "showToolbox":' + data.showToolbox + ',');
-      //println('  "toolbox":[');
-      //printArray(data.toolbox);
-      //println('  ],');
+      println('  "width":' + data.width + ',');
+      println('  "height":' + data.height + ',');
+      println('  "showToolbox":' + data.showToolbox + ',');
+      println('  "toolbox":[');
+      printArray(data.toolbox);
+      println('  ],');
       println('  "devices":[');
       printArray(data.devices);
       println('  ],');

@@ -1,6 +1,16 @@
+/*
+ * SimcirJS
+ *
+ * Copyright (c) 2014 Kazuhiko Arase
+ *
+ * URL: http://www.d-project.com/
+ *
+ * Licensed under the MIT license:
+ *  http://www.opensource.org/licenses/mit-license.php
+ */
+
 .simcir-body {
   display: inline-block;
-
 }
 
 .simcir-workspace {
@@ -14,7 +24,6 @@
 .simcir-pin-hole {
   fill: #cccccc;
   stroke: none;
-  
 }
 
 .simcir-toolbox {
