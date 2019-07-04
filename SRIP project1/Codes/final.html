@@ -36,14 +36,14 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<p class="lead">This lab allows you to design and simulate any digital combinational circuit. Following instruction help you build the adder circuit. A Javascript-based basic tool and simulation enigne is at the hear of this laboratory. You can create many circuits and test them with fixed or time-varying input signals. You can also see the outputs as values or time-varying waveforms. </p>
-					<h6>Adder Circuit Examples</h6>
-                    <h3>Circuit Diagram for Half Adder</h3>
-                    <img src="images/Half.png" alt="2bit basic state diagram"><br><br>
-                    <h3>Circuit Diagram For Full Adder</h3>
-                    <img src="images/Full.png"  alt="2bit state diagram" width="650" height="400"><br><br>
-                    <h3>Circuit Diagram for Parallel Adder</h3>
-                    <img src="images/Parallel.png" alt="3bit state diagram" width="650" height="400">
+					<p class="lead">This lab allows you to design and simulate any digital combinational or sequential circuit. Following instruction help you build the counter circuit. A Javascript-based basic tool and simulation enigne is at the hear of this laboratory. You can create many circuits and test them with fixed or time-varying input signals. You can also see the outputs as values or time-varying waveforms. </p>
+					<h6>Counter</h6>
+                    <h3>Circuit Diagram for 2bit State Diagram with Kmaps And Basic Circuit</h3>
+                    <img src="images/statee.png" alt="2bit basic state diagram"><br><br>
+                    <h3>Circuit Diagram for 2bit State Diagram in my simulator</h3>
+                    <img src="images/2bit.png"  alt="2bit state diagram" width="650" height="400"><br><br>
+                    <h3>Circuit Diagram for 3bit State Diagram in my simulator</h3>
+                    <img src="images/3bit.png" alt="3bit state diagram" width="650" height="400">
 					<hr>
 					<hr>
 				<p>The tool consist of mainly two pannels: Left Pannel, Right Pannel.</p>
@@ -52,7 +52,10 @@
 				<p><strong>Left Pannel:</strong>You can change the settings from the left pane.</p>
 				<ol>
 				<li>
-				<p>If you get stuck, and are not able to make the adder circuit diagram, then load Half Adder circuit diagram,Full Adder diagram,Paraller Adder circuit Diagram buttons will help you out.</p>
+				<p><strong>Frequency Input:</strong>The frequency input changes the frequency of the oscillator named as OSC on the simulation panel</p>
+				</li>
+				<li>
+				<p>If you get stuck, and are not able to make the state diagram, then load 2bit state diagram and 3bit state diagram buttons will help you out.</p>
 				</li>
 				<li>
 				<p>Click the "Clear Workspace" button to clear the simulation.</p>
@@ -92,6 +95,9 @@
 					</ul>
 					</li>
 					<li>
+					<p>The OSC supplies 1 and 0 in a specific frequency which you set in the settings pane.</p>
+					</li>
+					<li>
 					<p>The joint icon is just a connection, to make your connections look neater, as the lines from an output to an input are straight.</p>
 				</li>
 				<li>
@@ -108,18 +114,25 @@
 		</div>
 	</div>
 	<div id="content" class="container ">
-            <h1>Adder Circuit</h1>
-            <h3>Simulator For Adder Circuit(<a href="help.html" data-toggle="modal" data-target="#instructions">Click Here to see the instructions</a>)</h3>
+            <h1>State Diagrams</h1>
+            <h3>Simulator For State Diagrams with FlipFlops(<a href="help.html" data-toggle="modal" data-target="#instructions">Click Here to see the instructions</a>)</h3>
             <hr>
             <div class="row">
                 <div class="col-lg-3 border border-secondary" style="height: 800px">
                     <div class="mx-auto">
                         <h2>Settings</h2>
+                        <form>
+                            <div class="form-group">
+                                <label for="freq">Frequency of Oscillator</label>
+                                <input type="number" class="form-control" id="freq" aria-describedby="range" placeholder="Frequency" min="1" max="10" >
+                                <small id="range" class="form-text text-muted">Enter frequence between 1 and 10</small>
+                                <button type="submit" class="btn  btn-outline-danger" id="clear_settings">Clear</button>
+                            </div>
+                        </form>
                         <hr>
                         <div class="mx-auto">
-                            <button type="submit" class="btn  btn-outline-info" id="Half_Adder">Load Half Adder</button><br><br>
-							<button type="submit" class="btn  btn-outline-info" id="Full_adder">Load Full Adder</button><br><br>
-							<button type="submit" class="btn  btn-outline-info" id="parallel_adder">Load Parallel 4 bit adder</button><br><br>
+                            <button type="submit" class="btn  btn-outline-info" id="3bit_State_Diagram">Load 3bit State Diagram</button><br><br>
+                            <button type="submit" class="btn  btn-outline-info" id="2bit_State_Diagram">Load 2bit State Diagram</button><br><br>
                             <button type="submit" class="btn  btn-outline-info" id="clear_workspace">Clear Workspace</button>
                         </div>
                     </div>
@@ -134,6 +147,7 @@
             <script src="../libraries/simcir/simcir-basicset.js"></script>
             <script src="../libraries/simcir/simcir-library.js"></script>
             <script src="../libraries/simcir/simcir-dso.js"></script>
+            <script src="js/Dflipflop.js"></script>
         </div>
 </body>
 </html>
