@@ -1,235 +1,242 @@
-Experiment Project Documentation
-========================
+# Documentation For SRIP Project(DLD-Couters)
 
-Introduction
------------------
+Introduction: 
 
-This section captures the technical details related to the experiment development.
+In digital logic and computing, a counter is a device which stores (and sometimes displays) the number of times a particular event or process has occurred, often in relationship to a clock signal. In this experiment, different types of counters will be studied, both for the full binary sequence and for cycle lengths (N) different from powers of 2.
 
-Project
------------------
+This project is a simulation of the counters made in Digital Logic Design(DLD). It has only 2 counters currently, the ripple counter, and the ring counter.
+---
 
-**Domain Name : **Computer Science & Engineering
+### Counters
 
-**Lab Name : **Design logic Circuit** **
+Usually, counter circuits are digital in nature, and count in natural binary. Many types of counter circuits are available as digital building blocks, for example a number of chips in the 4000 series implement different counters. Occasionally there are advantages to using a counting sequence other than the natural binary sequence such as the binary coded decimal counter, a linear feedback shift register counter, or a Gray-code counter. Counters are useful for digital clocks and timers, and in oven timers, VCR clocks, etc. 
+The counters will be assembled using two 74LS73 dual J-K flip-flop chips and a 74LS02 quad NOR chip. Note that each flip-flop has an asynchronous Reset (R’) input besides the synchronous J-K inputs. This enables one to reset any of the flip-flops by making R’ = 0 irrespective of the status of the clock (CK) input. The asynchronous R’ input will be utilised in this experiment to initialise the flip-flop outputs as well as to obtain counters having cycle length N is less than 16.
 
-**Experiment Name : **Decoder with seven segment display
+#### Pin Connections:
 
-A BCD to 7-segment Decoder generates 7 outputs from a BCD (4-bit) input for driving a 7-segment LED display device to display BCD digits. A 7-segment display consists of seven segments designated as a, b, c, d, e, f and g in a clockwise sequence. An optional DP decimal point (an "eighth segment") is used for the display of non-integer numbers. In a 7-segment LED display, either all the anodes or all the cathodes of the LEDs in the seven segments are tied together and brought out at a single pin, and the device is accordingly called either a common-anode or a common-cathode display. In this experiment, we will use a common-anode display, and so the Decoder outputs are applied through resistors placed in series with the cathode of each segment. The objective of this experiment is to design, assemble and test a BCD to 7-segment Decoder generating these seven outputs. Note that each segment is lighted when the corresponding decoder output, also denoted by a, b, c, d, e, f and g, is LOW.
+![Image](http://cse15-iiith.vlabs.ac.in/images/counters.png)
 
-Purpose of the project
------------------
 
-The purpose of the project is to convert the **BCD to 7 Segment Display** experiment simulation from **Java** to **Javascript**.
+### Binary Ripple Counter
+1. Make J = K = 1 for all the flip-flops, thereby converting the J-K flip-flops to T flip-flops. Connect all R’ inputs together to an Input Switch, and the outputs Q0,Q1,Q2,Q3 to four LED Displays. 
 
-Project Developer Details
+2. Set up an Up-counting Binary Ripple Counter by making clock connections as follows: CK0 = Manual Clock (CLK-M), CK1 = Q0, CK2 = Q1, CK3 = Q2. 
 
-| S.NO | Name            | Year of study | Role          | E-mail Id                  | Github Handle                   |
-|------|-----------------|---------------|---------------|----------------------------|---------------------------------|
-| 1.   | Pratyush Narain | 3rd           | Web Developer | pratyushnarain97@gmail.com | https://github.com/Pratyush1197 |
+3. Using the Input Switch connected to the common R’ input, initialise the counter to the stat 
 
-Technologies and Libraries
------------------
+4. Apply Manual Clock pulses and tabulate the state sequence for the entire cycle. 
 
-Technologies :
------------------
+5. Now change the clock input connections to CK1 = Q0’, CK2 = Q1’, CK3 = Q2’, to obtain a Down-counting Binary Ripple counter. 
 
-1.  HTML
-2.  CSS
-3.  Javascript
 
-Libraries :   GoJs
+### Asynchronous (ripple) counter:
 
-Development Environment
------------------
+An asynchronous (ripple) counter is a single JK-type flip-flop, with its J (data) input fed from its own inverted output. This circuit can store one bit, and hence can count from zero to one before it overflows (starts over from 0). This counter will increment once for every clock cycle and takes two clock cycles to overflow, so every cycle it will alternate between a transition from 0 to 1 and a transition from 1 to 0. Notice that this creates a new clock with a 50% duty cycle at exactly half the frequency of the input clock. If this output is then used as the clock signal for a similarly arranged D flip-flop (remembering to invert the output to the input), you will get another 1 bit counter that counts half as fast. Putting them together yields a two-bit counter:
 
-**OS :** LINUX
+|Cycle|	Q1|	Q2|	(Q1:Q0)dec|
+|:----|:--|:---|:---------
+|0	|0|	0|	0|
+|1	|0|	1|	1|
+|2	|1|	0|	2|
+|3	|1|	1|	3|
+|4	|0|	0|	0|
 
- Documents :
- -----------------
+### Synchronous counter:
 
-| S.NO | Link to Document   | Role                                                                          |
-|------|--------------------|-------------------------------------------------------------------------------|
-| 1.   | Procedure          | This document captures the instructions to run the  simulations               |
-| 2.   | Test Cases         | This document captures the functional test cases of the experiment simulation |
-| 3.   | Code Documentation | This document captures the  details related to code                           |
+A simple way of implementing the logic for each bit of an ascending counter (which is what is depicted in the image to the right) is for each bit to toggle when all of the less significant bits are at a logic high state. For example, bit 1 toggles when bit 0 is logic high; bit 2 toggles when both bit 1 and bit 0 are logic high; bit 3 toggles when bit 2, bit 1 and bit 0 are all high; and so on. Synchronous counters can also be implemented with hardware finite state machines, which are more complex but allow for smoother, more stable transitions. Hardware-based counters are of this type.
 
-Process Followed to convert the experiment
 
-1.  Understand the assigned experiment Java simulation
-2.  Understanding the experiment concept
-3.  Re-implement the same in javascript
+### Decade counter:
 
-Value Added by our Project
------------------
+A decade counter is one that counts in decimal digits, rather than binary. A decade counter may have each digit binary encoded (that is, it may count in binary-coded decimal, as the 7490 integrated circuit did) or other binary encodings (such as the bi-quinary encoding of the 7490 integrated circuit). Alternatively, it may have a "fully decoded" or one-hot output code in which each output goes high in turn (the 4017 is such a circuit). The latter type of circuit finds applications in multiplexers and demultiplexers, or wherever a scanning type of behavior is useful. Similar counters with different numbers of outputs are also common. The decade counter is also known as a mod-counter when it counts to ten (0, 1, 2, 3, 4, 5, 6, 7, 8, 9). A Mod Counter that counts to 64 stops at 63 because 0 counts as a valid digit. 
+A decade counter has the count sequence 0 → 1 → 2 →.....→ 8 → 9 → 0.., which can be achieved by making R’ = (Q3 •Q1)’ for all the flip-flops in a 4-bit binary counter. This forces the counter to go to the state 0000 as soon as the counter makes the transition from the state 1001 representing count 9 to the next state 1010 according to the normal up counting sequence.
 
-1.  It would be beneficial for engineering students
-2.  Highly beneficial for tier 2 and tier 3 college students who can use this to learn and understand the concept of perception learning.
+### Decade synchronous counter:
 
-Risks and Challenges
------------------
+The logic for the J-K inputs required for a Decade Synchronous Counter is as follows: 
+J0 = K0 = 1; J1 = Q0•Q3’, K1 = Q0; J2 = K2 = Q0•Q1; J3 = Q0•Q1•Q2, K3 = Q0.
 
-Using a new library like GoJs and integrating it with Javascript was a bit challenging as it is very less support on stackoverflow. One of the biggest challenge was to make a Multiplexer as it required to address every port of a node (A node is basically logic gates which is termed as nodes in GoJs). For this I took the help of array concept and fetched all the port Id to an array and called it sequentially. It was a great experience using this library with javascript which helped to brush up my javascript concepts.
+### Multipurpose 4-bit Synchronous Counter:
 
-Experiment Procedure Documentation
-========================
+CD4029 is a multipurpose 4-bit counter capable of operating in all the four combinations of Binary/BCD and Up/Down modes, depending on the values of the control inputs B/D’ and U/D’. 
+In addition, the 4-bit output Q3Q2Q1Q0 of the counter can be preset to any value by applying the desired bits to the direct inputs D3D2D1D0 and making the Set ENable control SEN = 1. 
 
-Introduction
------------------
+![Image](http://cse15-iiith.vlabs.ac.in/images/CD4029codes.png)
 
-This document captures the instructions to run the simulation.
+## Objective:
 
-Instructions
------------------
+1. The objective of this experiment is to understand working of the counters.
+2. Try to make basic ripple counter and ring counter.
 
-1.  To run the experiment Clone the repository given below
+## Procedure:
 
-     [https://github.com/Pratyush1197/LogicCircuit.gi](https://github.com/Pratyush1197/LogicCircuit.git)t
+1. With The help of Theory Page , try to build the Counter Circuit.
+2. First of all build the basic counter .
+3. Then make the Ring Counter
+4. If You are unable to make it , load the circuit directly and use it
+5. Use OSC frequence input to analyze the output
 
-2.  Now open the folder LogicCircuit.html
-3.  Inside it again open the folder logicCircuit
-4.   Now simply run the logicCircuit.html file by clicking on it and the experiment will open in the browser.
+# Technical Details:
 
- It has all the logic gates (AND, OR, NOT,NOR,NAND,XOR and XNOR) fully functional with input and output ports provided for inputing the data and collecting it respectively. Project also has a BCD to seven segment display decoder library predefined which can be simply loaded by clicking the load button. Uses of different gates is as follows
+## Languages Used:
+1. HTML
+2. CSS
+3. Javascript
 
-![image](https://user-images.githubusercontent.com/32239181/60384845-556a8580-9aa0-11e9-9ed0-d96454ec62d5.png)
+## Libraries Used:
+1. [Bootstrap](https://getbootstrap.com/) 
+2. [jQuery](https://jquery.com/)
 
-**INPUT - **We can give any input just by dragging the input node to the drawing area and double clicking on it. It will open a small input box where you can provide your value
+## Module Used
+1. [Simcir](https://kazuhikoarase.github.io/simcirjs/)
+[github link](https://github.com/kazuhikoarase/simcirjs)
 
-**Output- **We can get the output value when this is connected to endpoint. As at present its work is to show only the seven segment display so when the output is **one **it will display red LED of that particular segment else it will be gray.It has seven output templates to take output for seven segments simutaneously.
+## Implementation:
 
-**Gates **T****he gates works when we connect the wires with their ports we will get the output which can be calculated by taking out the wire from its output port.
+### The simcir module
 
-**Multiplexer **Its work is to take four inputs and it has two select lines when we give it output in binary form (i.e 0 or 1) we will get the selected input as output. Suppose we give input as 0 and 1 i.e MSB is given output 0 and LSB as 1.(The select line port are the bottom two and the left side one is the MSB and right is LSB). The decimal equivalent of it is one so output will be input which is given to port 2 of Input port(These are the ports which are connected to the left of mux.
+The simcir module basically searches for a div with class named "simcir". It reads the json data inside that div, and transforms it into a live simulation. 
 
-**BCD to seven segment display decoder **Click on the load button. The Circuit will be loaded. Now the four input ports signify the four inputs with first input from left is MSB and last is LSB. Input is initially **zero**. Double click on any input port and set **one **as input. The color will be changed from red to green. When setting the value again to zero will make it red again.
+The json data contains the following things:
+1. width(integer)- width of the simulator on the screen in px
+2. height(integer)- height of the simulator in px
+3. showToolbox(boolean)- decides if the toolbox(the left panel) is to be displayed or not.
+4. toolbox(array)- items/tools to be shown in toolbox
+5. devices(array)- devices to be displayed on the breadboard
+6. connectors(array)- connections between the simulated tools/items.
 
-Load button- This will load the working circuit of our experiment.
+### Overview
 
+More circuits/tools have been added to the simulation, and premade circuit data is created to load the counters with the click of a button.
 
-![image](https://user-images.githubusercontent.com/32239181/60384852-60bdb100-9aa0-11e9-8dae-4223e09a2f66.png)
+### Files
 
+#### end.js
 
-![image](https://user-images.githubusercontent.com/32239181/60384854-6f0bcd00-9aa0-11e9-854f-3edad134b4ff.png)
+##### Overview:
+Added more functionality to the existing module.
 
+##### Technicalities
+1. used the function registerDevice() which is defined in the module simcir to add more items/tools that are required by the simulation
+2. it's named end.js because it has to be run in the end, after all the js files, because it uses variables from the simcir module's js files
 
- **Clear button- **Clicking on the clear button will reload the screen and clear all the circuits on the screen
+#### main.js
 
-**Experiment Test Cases Documentation**
-========================
+##### Overview:
+This file manages all the local variables and remembers the settings to be applied on refreshes of the page.
 
-**Introduction **
------------------
+##### Technicalities:
+1. Made the width of the simulator dynamic by using the screen size of the pc which is running the simulation to utilize maximum width possible without scrolling
+2. This file uses 'sessionStorage' variables(which uses key value pairs to store data), which remain as long as the tab is open, and do not clear on page refreshes. These variables are used to store the settings of the user.
+3. Since the simcir library uses the json data provided at the start, and then replaces it by the simulation, we need to refresh the page and set new json data in the 'simcir' div.
+4. Different settings are stored in different key-value pairs in sessionStorage.
+	* 'OSCfreq' - The frequency of OSC
+	* '8bitCounter_module' - Checkbox of 8-bit-counter module 
+	* '8bitRingCounter_module' - Checkbox of 8-bit-ring-counter module 
+	* '8bitCounter' - Is true if the button "Load Counter" is clicked
+	* '8bitRingCounter' - Is true if the button "Load Ring Counter" is clicked
+5. The program first checks if there should be any circuit preloaded. If yes, then it checks all the settings and sets them up accordingly. If no, then it loads a blank simulation with the settings applied.
+6. The file also handles all the click events on the webpage to make the buttons interactable
 
-This document captures the test cases of the experiment.
+## Test Cases
 
-**Functional Test Cases**
------------------
+### Test Case 1
 
+#### Dynamic simulator size
 
+* Simulator loads according to different screen size
 
-| Test Case Id | Test Scenario                                                    | Test Case                                     | Test Data                     | Expected Output                      | Actual Output                  | Test Result | Comments |
-|--------------|------------------------------------------------------------------|-----------------------------------------------|-------------------------------|--------------------------------------|--------------------------------|-------------|----------|
-| 1.           | To get the number which is given as input, on the seven segment. | We give input as 0 1 1 0( i.e in binary form) | Data can only be binary value |  Seven segment display should show 6 | Seven segment display shows 6  | Pass        | None     |
-| 2.           | To get the number which is given as input, on the seven segment. | We give input as 1 0 0 1( i.e in binary form) | Data can only be binary value | Seven segment display should show 9  | Seven segment display shows  9 | Pass        | None     |
+* Simulator does not resize itself when the window is resized when the simulator is already loaded, a refresh is required.
 
-****
+Test case partially passed.
 
-In case if it doesn’t work on some browsers, list down the browsers along with the versions here
+### Test Case 2
 
-| S. No | Browser           | Version  | Works(Yes/No) |
-|-------|-------------------|----------|---------------|
-| 1.    | Internet Explorer | 18, 17    | Yes           |
-| 2.    | Chrome            | 77, 75, 74 | Yes           |
-| 3.    | Firefox           | 66, 67, 68 | Yes           |
-| 4.    | Opera             | 60, 58, 61 | Yes           |
+#### Input of the frequency
 
-Experiment Code Documentation
-========================
+Input: words
+Output: not accepted
 
-Introduction
------------------
+Test case passed.
 
-This document captures the experiment implementation details.
+### Test Case 3
 
-Code Details
------------------
+#### Input of the frequency
 
-**File Name : LogicCircuit.js**
+Input: numbers between 1 and 10
+Output: accepted
 
-**File Description : **This is a digital logic circuit simulator which is made with GoJs library,Vanilla Javascript HTML and CSS**.**
+Test case passed.
 
-Other details:
+### Test Case 4
 
-BCD to 7 Segment Display
-========================
+#### Input of the frequency
 
-A seven-segment display is an electronic display device for displaying decimal numerals. Seven-segment displays are widely used in digital clocks, electronic meters and other electronic devices that display numerical information.
+Input: numbers not in the range of 1-10
+Output: error shown
 
-7 Segment Display
------------------
+Test case passed
 
-A 7 Segment LED display generally has 8 input connections, one for each LED segment and one that acts as a common terminal. There are 2 types of 7 Segment LED digital display.
+### Test Case 5
 
--   Common Cathode Display – all the cathode connections of the LEDs are connected to ground. A logic '1' applied to the anode terminal of the individual segment illuminates it.
--   Common Anode Display – all the anode connections of the LEDs are connected to VCC. A logic '0' applied to the cathode terminal of the individual segment illuminates it.
+#### Checkboxes
 
-BCD to 7 Segment Display Decoder
---------------------------------
+Input: click
+Output: toggle
 
-A BCD to Seven Segment decoder is a combinational logic circuit that accepts a decimal digit in BCD (input) and generates appropriate outputs for the segments to display the input decimal digit.
+Test case passed.
 
-Here is the truth table for the working:
+### Test Case 6
 
-![image](https://user-images.githubusercontent.com/32239181/60384857-7e8b1600-9aa0-11e9-89bd-c41880ff3e30.png)
+#### Save Settings button
 
+Input: click
+Output: Page refresh with new settings applied
 
-The input bits are D (MSB) to A (LSB) and the outputs are the segments a to g. For input values A to F, the display is blanked (outputs are all 0).
+Test case passed.
 
-<span id="anchor"></span>
-**Karnaugh Maps Simplification**
+### Test Case 7
 
-For other combinations of input, the output is “**don’t care X**” as there are no more digits to display. We will derive the expression for each output using [ ](https://www.electricaltechnology.org/2018/05/karnaugh-map-k-map.html)****Karnaugh Maps****.
+#### Clear Settings
 
-**For output a:**
+Input: click
+Output: page refresh with default settings 
 
-![image](https://user-images.githubusercontent.com/32239181/60384860-85b22400-9aa0-11e9-9177-6bf88d776156.png)
+Test case passed.
 
+### Test Case 8
 
+#### Load
 
-**For output b:**
+Input: click
+Output: page refresh with couter loaded with no interaction(with settings intact).
 
-![image](https://user-images.githubusercontent.com/32239181/60384862-8c409b80-9aa0-11e9-943a-8fa8f5042511.png)
+Test case passed.
 
+### Test Case 9
 
-**For output c:**
+#### Load Ring counter
 
-![image](https://user-images.githubusercontent.com/32239181/60384865-99f62100-9aa0-11e9-934a-61c212802b7d.png)
+Input: click
+Output: page refresh with ring couter loaded with no interaction(with settings intact).
 
+Test case passed.
 
-<span id="anchor-1"></span><span id="anchor-2"></span><span id="anchor-1"></span>**For output d:**
+### Test Case 10
 
+#### Clear Workspace
 
-![image](https://user-images.githubusercontent.com/32239181/60384879-a2e6f280-9aa0-11e9-80a4-41bc75f1b972.png)
+Input: click
+Output: page refresh with blank breadboard and interaction enabled(with settings intact). 
 
-**For output e:**
+Test case passed.
 
+### Test Case 11
 
-![image](https://user-images.githubusercontent.com/32239181/60384884-aed2b480-9aa0-11e9-8c53-d05f17a5f286.png)
+#### Simulation
 
+Input: drag/drop/connections
+Output: everything working correctly. 
 
+Test case passed.
 
-**For output f:**
-
-![image](https://user-images.githubusercontent.com/32239181/60384887-b7c38600-9aa0-11e9-8dc8-29b13d2a1d92.png)
-
-
-**For output g:**
-
-![image](https://user-images.githubusercontent.com/32239181/60384895-c1e58480-9aa0-11e9-8b4e-8993414ef79a.png)
-
-Now using these formulas for **a,b,c,d,e,f,g **we design logic circuits using Gates(AND, OR,NOT)
-
-so the final circuit looks like this
-
-![image](https://user-images.githubusercontent.com/32239181/60384898-ca3dbf80-9aa0-11e9-951f-4e180893016c.png)
