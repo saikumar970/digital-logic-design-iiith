@@ -1,4 +1,4 @@
-# Documentation For SRIP Project(DLD-Couters)
+# Documentation For SRIP Project(DLD-Registers)
 
 Introduction: 
 
