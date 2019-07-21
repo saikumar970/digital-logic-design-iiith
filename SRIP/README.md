@@ -62,7 +62,7 @@ The logic circuit given below shows a parallel-in-parallel-out shift register. T
 
 1. With The help of Theory Page , try to build the Register Circuit.
 2. First of all build the basic Register .
-3. Then make the Ring SISO
+3. Then make the  SISO
 4. If You are unable to make it , load the circuit directly and use it
 5. Use OSC frequence input to analyze the output
 
@@ -142,7 +142,7 @@ Test case passed.
 #### Load
 
 Input: click
-Output: page refresh with couter loaded with no interaction(with settings intact).
+Output: page refresh loaded with no interaction(with settings intact).
 
 Test case passed.
 
