@@ -44,7 +44,7 @@ The shift register, which allows parallel input (data is given separately to eac
 The logic circuit given below shows a parallel-in-serial-out shift register. The circuit consists of four D flip-flops which are connected. The clock input is directly connected to all the flip flops but the input data is connected individually to each flip flop through a multiplexer at the input of every flip flop. The output of the previous flip flop and parallel data input are connected to the input of the MUX and the output of MUX is connected to the next flip flop. All these flip-flops are synchronous with each other since the same clock signal is applied to each flip flop.
 A Parallel in Serial out (PISO) shift register us used to convert parallel data to serial data. 
 
-![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP/Codes/images/PISO_DOC.png)
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP/Codes/images/PISO_DOC.jpg)
 ### Parallel-In Parallel-Out Shift Register (PIPO):
 
 The shift register, which allows parallel input (data is given separately to each flip flop and in a simultaneous manner) and also produces a parallel output is known as Parallel-In parallel-Out shift register.
