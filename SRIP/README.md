@@ -172,7 +172,7 @@ Output: page refresh with blank breadboard and interaction enabled(with settings
 
 Test case passed.
 
-### Test Case 11
+### Test Case 7
 
 #### Simulation
 
