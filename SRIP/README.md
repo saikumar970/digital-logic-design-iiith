@@ -1,6 +1,6 @@
 # Documentation For SRIP Project(DLD-Registers)
 
-####Introduction: 
+###Introduction: 
 
 Registers,A register is a memory device that can be used to store more than one bit of information. □ A register is usually realized as several flip-flops with common control signals that control the movement of data to and from the register.
 
