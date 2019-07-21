@@ -1,8 +1,8 @@
 # Documentation For SRIP Project(DLD-Registers)
 
-Introduction: 
+####Introduction: 
 
-In digital logic and computing, a counter is a device which stores (and sometimes displays) the number of times a particular event or process has occurred, often in relationship to a clock signal. In this experiment, different types of counters will be studied, both for the full binary sequence and for cycle lengths (N) different from powers of 2.
+Registers,A register is a memory device that can be used to store more than one bit of information. □ A register is usually realized as several flip-flops with common control signals that control the movement of data to and from the register.
 
 This project is a simulation of the Registers made in Digital Logic Design(DLD). It has only 2 counters currently, the SISO, and the SIPO.
 ---
