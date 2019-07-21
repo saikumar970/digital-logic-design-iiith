@@ -97,7 +97,7 @@ The json data contains the following things:
 
 ### Overview
 
-More circuits/tools have been added to the simulation, and premade circuit data is created to load the counters with the click of a button.
+More circuits/tools have been added to the simulation, and premade circuit data is created to load the register with the click of a button.
 
 ### Files
 
@@ -111,7 +111,6 @@ This file manages all the local variables and remembers the settings to be appli
 2. This file uses 'sessionStorage' variables(which uses key value pairs to store data), which remain as long as the tab is open, and do not clear on page refreshes. These variables are used to store the settings of the user.
 3. Since the simcir library uses the json data provided at the start, and then replaces it by the simulation, we need to refresh the page and set new json data in the 'simcir' div.
 4. Different settings are stored in different key-value pairs in sessionStorage.
-	* 'OSCfreq' - The frequency of OSC
 	* 'SISO' - Is true if the button "Load SISO Register" is clicked
 	* 'SIPO' - Is true if the button "Load SIPO Register" is clicked
 5. The program first checks if there should be any circuit preloaded. If yes, then it checks all the settings and sets them up accordingly. If no, then it loads a blank simulation with the settings applied.
@@ -152,7 +151,7 @@ Test case passed.
 #### Load SISO Register
 
 Input: click
-Output: page refresh with ring couter loaded with no interaction(with settings intact).
+Output: page refresh with SISO register loaded with no interaction(with settings intact).
 
 Test case passed.
 ### Test Case 5
@@ -160,7 +159,7 @@ Test case passed.
 #### Load SIPO Register
 
 Input: click
-Output: page refresh with ring couter loaded with no interaction(with settings intact).
+Output: page refresh with SIPO register loaded with no interaction(with settings intact).
 
 Test case passed.
 ### Test Case 6
