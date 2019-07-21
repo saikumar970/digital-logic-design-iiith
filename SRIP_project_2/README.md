@@ -1,70 +1,59 @@
-# Documentation For SRIP Project(DLD-Registers)
+# Documentation For SRIP Project(DLD-Adder Circuit)
  
 ### Introduction
 
-Registers,A register is a memory device that can be used to store more than one bit of information. □ A register is usually realized as several flip-flops with common control signals that control the movement of data to and from the register.
+An adder is a digital circuit that performs addition of numbers. In many computers and other kinds of processors adders are used in the arithmetic logic units or ALU. They are also used in other parts of the processor, where they are used to calculate addresses, table indices, increment and decrement operators, and similar operations.
 
-This project is a simulation of the Registers made in Digital Logic Design(DLD). It has only 2 counters currently, the SISO, and the SIPO.
+This project is a simulation of the Adder circuit made in Digital Logic Design(DLD). using this simulator we can implement any adder circuit like half adder full adder parallel 4bit adder etc..
 ---
 
-### Registers
+### Adders
 
-Flip flops can be used to store a single bit of binary data (1or 0). However, in order to store multiple bits of data, we need multiple flip flops. N flip flops are to be connected in an order to store n bits of data. A Register is a device which is used to store such information. It is a group of flip flops connected in series used to store multiple bits of data.
+An adder is a digital logic circuit in electronics that implements addition of numbers. In many computers and other types of processors, adders are used to calculate addresses, similar operations and table indices in the ALU and also in other parts of the processors. These can be built for many numerical representations like excess-3 or binary coded decimal. Adders are classified into two types: half adder and full adder. The half adder circuit has two inputs: A and B, which add two input digits and generate a carry and sum. The full adder circuit has three inputs: A and C, which add the three input numbers and generate a carry and sum. This article gives brief information about half adder and full adder in tabular forms and circuit diagrams.
+mainly we have basic two adder circuits.
 
-The information stored within these registers can be transferred with the help of shift registers. Shift Register is a group of flip flops used to store multiple bits of data. The bits stored in such registers can be made to move within the registers and in/out of the registers by applying clock pulses. An n-bit shift register can be formed by connecting n flip-flops where each flip flop stores a single bit of data.
-The registers which will shift the bits to left are called “Shift left registers”.
-The registers which will shift the bits to right are called “Shift right registers”.
-Shift registers are basically of 4 types. These are:
-
-    1.Serial In Serial Out shift register
-    2.Serial In parallel Out shift register
-    3.Parallel In Serial Out shift register
-    4.Parallel In parallel Out shift register
+    1.Half-Adder
+    2.Full-Adder
     
-### Serial-In Serial-Out Shift Register (SISO) –
-1. The shift register, which allows serial input (one bit after the other through a single data line) and produces a serial output is known as Serial-In Serial-Out shift register. Since there is only one output, the data leaves the shift register one bit at a time in a serial pattern, thus the name Serial-In Serial-Out Shift Register.
+### Half Adder–
+1.An adder is a digital circuit that performs addition of numbers. The half adder adds two binary digits called as augend and addend and produces two outputs as sum and carry; XOR is applied to both inputs to produce sum and AND gate is applied to both inputs to produce carry. The full adder adds 3 one bit numbers, where two can be referred to as operands and one can be referred to as bit carried in. And produces 2-bit output, and these can be referred to as output carry and sum.
 
-2. The logic circuit given below shows a serial-in serial-out shift register. The circuit consists of four D flip-flops which are connected in a serial manner. All these flip-flops are synchronous with each other since the same clock signal is applied to each flip flop. 
+2. By using half adder, you can design simple addition with the help of logic gates.
+3. Truth table for half adder
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_project_2/Codes/images/Half-Addder-Truth-Table.jpg)
+4.Now it has been cleared that  1-bit adder can be easily implemented with the help of the XOR Gate for the output ‘SUM’ and an AND Gate for the ‘Carry’. When we need to add, two 8-bit bytes together, we can be done with the help of a full-adder logic. The half-adder is useful when you want to  add one binary digit quantities. A way to develop a two-binary digit adders would be to make a truth table and reduce it.  When you want to make a three binary digit adder, do it again. When you decide to make a four digit adder, do it again. The circuits would be fast, but development time is slow.
+5. circuit diagram forhalf adder
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_project_2/Codes/images/Half-Adder-Circuit.jpg)
+6.The simplest expression uses the exclusive OR function: Sum=AÅB. An equivalent expression in terms of the basic AND, OR, and NOT is: SUM=A|.B+A.B’
+### Full Adder –:
 
-3. The below circuit is an example of shift right register, taking the serial data input from the left side of the flip flop. The main use of a SISO is to act as a delay element.
-![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP/Codes/images/SISO_DOC.png)
+This adder is difficult to implement than a half-adder. The difference between a half-adder and a full-adder is that the full-adder has three inputs and two outputs, whereas half adder has only two inputs and two outputs. The first two inputs are A and B and the third input is an input carry as C-IN. When a full-adder logic is designed, you string eight of them together to create a byte-wide adder and cascade the carry bit from one adder to the nex.
 
-### Serial-In Parallel-Out shift Register (SIPO) –:
+The output carry is designated as C-OUT and the normal output is designated as S.
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_project_2/Codes/images/Full-Adder-Truth-Table.jpg)
+With the truth-table, the full adder logic can be implemented. You can see that the output S is an XOR between the input A and the half-adder, SUM output with B and C-IN inputs. We take C-OUT will only be true if any of the two inputs out of the three are HIGH.
+So, we can implement a full adder circuit with the help of two half adder circuits. At first, half adder will be used to add A and B to produce a partial Sum and a second half adder logic can be used to add C-IN to the Sum produced by the first half adder to get the final S output.
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_project_2/Codes/images/Full-Adder-Circuit.jpg)
+If any of the half adder logic produces a carry, there will be an output carry. So, COUT will be an OR function of the half-adder Carry outputs. Take a look at the implementation of the full adder circuit shown below.
+The implementation of larger logic diagrams is possible with the above full adder logic a simpler symbol is mostly used to represent the operation. Given below is a simpler schematic representation of a one-bit full adder.
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_project_2/Codes/images/Full-Adder-by-Half-Adders.jpg)
+### Parallel Adder:
 
-The shift register, which allows serial input (one bit after the other through a single data line) and produces a parallel output is known as Serial-In Parallel-Out shift register.
+A single full adder performs the addition of two one bit numbers and an input carry. But a Parallel Adder is a digital circuit capable of finding the arithmetic sum of two binary numbers that is greater than one bit in length by operating on corresponding pairs of bits in parallel. It consists of full adders connected in a chain where the output carry from each full adder is connected to the carry input of the next higher order full adder in the chain. A n bit parallel adder requires n full adders to perform the operation. So for the two-bit number, two adders are needed while for four bit number, four adders are needed and so on. Parallel adders normally incorporate carry lookahead logic to ensure that carry propagation between subsequent stages of addition does not limit addition speed. 
 
-The logic circuit given below shows a serial-in-parallel-out shift register. The circuit consists of four D flip-flops which are connected. The clear (CLR) signal is connected in addition to the clock signal to all the 4 flip flops in order to RESET them. The output of the first flip flop is connected to the input of the next flip flop and so on. All these flip-flops are synchronous with each other since the same clock signal is applied to each flip flop.
-The below circuit is an example of shift right register, taking the serial data input from the left side of the flip flop and producing a parallel output. They are used in communication lines where demultiplexing of a data line into several parallel lines is required because the main use of the SIPO register is to convert serial data into parallel data.
-![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP/Codes/images/SIPO_DOC.png)
-
-### Parallel-In Serial-Out Shift Register (PISO):
-
-The shift register, which allows parallel input (data is given separately to each flip flop and in a simultaneous manner) and produces a serial output is known as Parallel-In Serial-Out shift register.
-
-The logic circuit given below shows a parallel-in-serial-out shift register. The circuit consists of four D flip-flops which are connected. The clock input is directly connected to all the flip flops but the input data is connected individually to each flip flop through a multiplexer at the input of every flip flop. The output of the previous flip flop and parallel data input are connected to the input of the MUX and the output of MUX is connected to the next flip flop. All these flip-flops are synchronous with each other since the same clock signal is applied to each flip flop.
-A Parallel in Serial out (PISO) shift register us used to convert parallel data to serial data. 
-
-![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP/Codes/images/PISO_DOC.jpg)
-### Parallel-In Parallel-Out Shift Register (PIPO):
-
-The shift register, which allows parallel input (data is given separately to each flip flop and in a simultaneous manner) and also produces a parallel output is known as Parallel-In parallel-Out shift register.
-
-The logic circuit given below shows a parallel-in-parallel-out shift register. The circuit consists of four D flip-flops which are connected. The clear (CLR) signal and clock signals are connected to all the 4 flip flops. In this type of register, there are no interconnections between the individual flip-flops since no serial shifting of the data is required. Data is given as input separately for each flip flop and in the same way, output also collected individually from each flip flop.
-![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP/Codes/images/PIPO_DOC.png)
-
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_project_2/Codes/images/paraller_adder.png)
 
 ## Objective:
 
-1. The objective of this experiment is to understand working of the Register.
-2. Try to make basic SIPO SISO PISO and PIPO.
+1. The objective of this experiment is to understand working of the Adder Circuit.
+2. Try to make basic adder circuit.
 
 ## Procedure:
 
-1. With The help of Theory Page , try to build the Register Circuit.
-2. First of all build the basic Register .
-3. Then make the Ring SISO
+1. With The help of Theory Page , try to build the adder Circuit.
+2. First of all build the basic half adder .
+3. Then make the full adder
 4. If You are unable to make it , load the circuit directly and use it
-5. Use OSC frequence input to analyze the output
 
 # Technical Details:
 
@@ -111,9 +100,9 @@ This file manages all the local variables and remembers the settings to be appli
 2. This file uses 'sessionStorage' variables(which uses key value pairs to store data), which remain as long as the tab is open, and do not clear on page refreshes. These variables are used to store the settings of the user.
 3. Since the simcir library uses the json data provided at the start, and then replaces it by the simulation, we need to refresh the page and set new json data in the 'simcir' div.
 4. Different settings are stored in different key-value pairs in sessionStorage.
-	* 'OSCfreq' - The frequency of OSC
-	* 'SISO' - Is true if the button "Load SISO Register" is clicked
-	* 'SIPO' - Is true if the button "Load SIPO Register" is clicked
+	* 'Half Adder' - Is true if the button "Load Half adder" is clicked
+	* 'Full Adder' - Is true if the button "Load Full adder" is clicked
+	* 'Parallel Adder' - Is true if the button "Load Parallel adder" is clicked
 5. The program first checks if there should be any circuit preloaded. If yes, then it checks all the settings and sets them up accordingly. If no, then it loads a blank simulation with the settings applied.
 6. The file also handles all the click events on the webpage to make the buttons interactable
 
@@ -143,27 +132,35 @@ Test case passed.
 #### Load
 
 Input: click
-Output: page refresh with couter loaded with no interaction(with settings intact).
+Output: page refresh with Adder loaded with no interaction(with settings intact).
 
 Test case passed.
 
 ### Test Case 4
 
-#### Load SISO Register
+#### Load Half Adder
 
 Input: click
-Output: page refresh with ring couter loaded with no interaction(with settings intact).
+Output: page refresh with Half Adder loaded with no interaction(with settings intact).
 
 Test case passed.
 ### Test Case 5
 
-#### Load SIPO Register
+#### Load Full Adder 
 
 Input: click
-Output: page refresh with ring couter loaded with no interaction(with settings intact).
+Output: page refresh with Full Adder loaded with no interaction(with settings intact).
 
 Test case passed.
 ### Test Case 6
+
+#### Load Parallel 4bit Adder 
+
+Input: click
+Output: page refresh with Parallel 4bit Adder loaded with no interaction(with settings intact).
+
+Test case passed.
+### Test Case 7
 
 #### Clear Workspace
 
@@ -172,7 +169,7 @@ Output: page refresh with blank breadboard and interaction enabled(with settings
 
 Test case passed.
 
-### Test Case 7
+### Test Case 8
 
 #### Simulation
 
