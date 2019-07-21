@@ -166,7 +166,7 @@
     return function(device) {
 
       var numInputs = Math.max(1,
-          device.deviceDef.numInputs || 5);
+          device.deviceDef.numInputs || 4);
       var scale = 1;
       var gap = 2;
 
@@ -181,7 +181,7 @@
       };
 
       device.getSize = function() {
-        return { width : unit * 5,
+        return { width : unit * 4,
           height : unit * (numInputs * scale + 2) };
       };
 
@@ -264,10 +264,10 @@
         device.doc = {
           params: [
             {name: 'numInputs', type: 'number',
-              defaultValue: 5,
+              defaultValue: 4,
               description: 'number of inputs.'}
           ],
-          code: '{"type":"' + device.deviceDef.type + '","numInputs":5}'
+          code: '{"type":"' + device.deviceDef.type + '","numInputs":4}'
         };
       };
     };
