@@ -80,14 +80,14 @@ The D - Flip Flop version: (Figure below)
 This is it! We have successfully designed and constructed a Sequential Circuit.
 ## Objective:
 
-1. The objective of this experiment is to understand working of the Register.
-2. Try to make basic SIPO SISO PISO and PIPO.
+1. The objective of this experiment is to understand working of the State Diagram.
+2. Try to make basic 2bit and 3bit state diagrams.
 
 ## Procedure:
 
-1. With The help of Theory Page , try to build the Register Circuit.
-2. First of all build the basic Register .
-3. Then make the Ring SISO
+1. With The help of Theory Page , try to build the state diagram circuit.
+2. First of all build the basic state diagrms .
+3. Then make the 2bit state diagram
 4. If You are unable to make it , load the circuit directly and use it
 5. Use OSC frequence input to analyze the output
 
@@ -136,9 +136,9 @@ This file manages all the local variables and remembers the settings to be appli
 2. This file uses 'sessionStorage' variables(which uses key value pairs to store data), which remain as long as the tab is open, and do not clear on page refreshes. These variables are used to store the settings of the user.
 3. Since the simcir library uses the json data provided at the start, and then replaces it by the simulation, we need to refresh the page and set new json data in the 'simcir' div.
 4. Different settings are stored in different key-value pairs in sessionStorage.
-	* 'OSCfreq' - The frequency of OSC
-	* 'SISO' - Is true if the button "Load SISO Register" is clicked
-	* 'SIPO' - Is true if the button "Load SIPO Register" is clicked
+	* 'OSCfreq' - The frequency of OSC to analyze output
+	* '2bit state diagram' - Is true if the button "Load 2bit state diagram" is clicked
+	* '3bit state diagram' - Is true if the button "Load 3bit state diagram"is clicked
 5. The program first checks if there should be any circuit preloaded. If yes, then it checks all the settings and sets them up accordingly. If no, then it loads a blank simulation with the settings applied.
 6. The file also handles all the click events on the webpage to make the buttons interactable
 
@@ -174,18 +174,18 @@ Test case passed.
 
 ### Test Case 4
 
-#### Load SISO Register
+#### Load 2bit state diagram
 
 Input: click
-Output: page refresh with ring couter loaded with no interaction(with settings intact).
+Output: page refresh with 2bit state diagram loaded with no interaction(with settings intact).
 
 Test case passed.
 ### Test Case 5
 
-#### Load SIPO Register
+#### Load 3bit state diagram
 
 Input: click
-Output: page refresh with ring couter loaded with no interaction(with settings intact).
+Output: page refresh with 2bit state diagram loaded with no interaction(with settings intact).
 
 Test case passed.
 ### Test Case 6
