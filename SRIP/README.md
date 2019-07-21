@@ -27,56 +27,42 @@ Shift registers are basically of 4 types. These are:
 2. The logic circuit given below shows a serial-in serial-out shift register. The circuit consists of four D flip-flops which are connected in a serial manner. All these flip-flops are synchronous with each other since the same clock signal is applied to each flip flop. 
 
 3. The below circuit is an example of shift right register, taking the serial data input from the left side of the flip flop. The main use of a SISO is to act as a delay element.
-![Image](http://cse15-iiith.vlabs.ac.in/images/CD4029codes.png)
-4. Apply Manual Clock pulses and tabulate the state sequence for the entire cycle. 
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP/Codes/images/SISO_DOC.png)
 
-5. Now change the clock input connections to CK1 = Q0’, CK2 = Q1’, CK3 = Q2’, to obtain a Down-counting Binary Ripple counter. 
+### Serial-In Parallel-Out shift Register (SIPO) –:
 
+The shift register, which allows serial input (one bit after the other through a single data line) and produces a parallel output is known as Serial-In Parallel-Out shift register.
 
-### Asynchronous (ripple) counter:
+The logic circuit given below shows a serial-in-parallel-out shift register. The circuit consists of four D flip-flops which are connected. The clear (CLR) signal is connected in addition to the clock signal to all the 4 flip flops in order to RESET them. The output of the first flip flop is connected to the input of the next flip flop and so on. All these flip-flops are synchronous with each other since the same clock signal is applied to each flip flop.
+The below circuit is an example of shift right register, taking the serial data input from the left side of the flip flop and producing a parallel output. They are used in communication lines where demultiplexing of a data line into several parallel lines is required because the main use of the SIPO register is to convert serial data into parallel data.
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP/Codes/images/SIPO_DOC.png)
 
-An asynchronous (ripple) counter is a single JK-type flip-flop, with its J (data) input fed from its own inverted output. This circuit can store one bit, and hence can count from zero to one before it overflows (starts over from 0). This counter will increment once for every clock cycle and takes two clock cycles to overflow, so every cycle it will alternate between a transition from 0 to 1 and a transition from 1 to 0. Notice that this creates a new clock with a 50% duty cycle at exactly half the frequency of the input clock. If this output is then used as the clock signal for a similarly arranged D flip-flop (remembering to invert the output to the input), you will get another 1 bit counter that counts half as fast. Putting them together yields a two-bit counter:
+### Parallel-In Serial-Out Shift Register (PISO):
 
-|Cycle|	Q1|	Q2|	(Q1:Q0)dec|
-|:----|:--|:---|:---------
-|0	|0|	0|	0|
-|1	|0|	1|	1|
-|2	|1|	0|	2|
-|3	|1|	1|	3|
-|4	|0|	0|	0|
+The shift register, which allows parallel input (data is given separately to each flip flop and in a simultaneous manner) and produces a serial output is known as Parallel-In Serial-Out shift register.
 
-### Synchronous counter:
+The logic circuit given below shows a parallel-in-serial-out shift register. The circuit consists of four D flip-flops which are connected. The clock input is directly connected to all the flip flops but the input data is connected individually to each flip flop through a multiplexer at the input of every flip flop. The output of the previous flip flop and parallel data input are connected to the input of the MUX and the output of MUX is connected to the next flip flop. All these flip-flops are synchronous with each other since the same clock signal is applied to each flip flop.
+A Parallel in Serial out (PISO) shift register us used to convert parallel data to serial data. 
 
-A simple way of implementing the logic for each bit of an ascending counter (which is what is depicted in the image to the right) is for each bit to toggle when all of the less significant bits are at a logic high state. For example, bit 1 toggles when bit 0 is logic high; bit 2 toggles when both bit 1 and bit 0 are logic high; bit 3 toggles when bit 2, bit 1 and bit 0 are all high; and so on. Synchronous counters can also be implemented with hardware finite state machines, which are more complex but allow for smoother, more stable transitions. Hardware-based counters are of this type.
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP/Codes/images/PISO_DOC.png)
+### Parallel-In Parallel-Out Shift Register (PIPO):
 
+The shift register, which allows parallel input (data is given separately to each flip flop and in a simultaneous manner) and also produces a parallel output is known as Parallel-In parallel-Out shift register.
 
-### Decade counter:
+The logic circuit given below shows a parallel-in-parallel-out shift register. The circuit consists of four D flip-flops which are connected. The clear (CLR) signal and clock signals are connected to all the 4 flip flops. In this type of register, there are no interconnections between the individual flip-flops since no serial shifting of the data is required. Data is given as input separately for each flip flop and in the same way, output also collected individually from each flip flop.
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP/Codes/images/PIPO_DOC.png)
 
-A decade counter is one that counts in decimal digits, rather than binary. A decade counter may have each digit binary encoded (that is, it may count in binary-coded decimal, as the 7490 integrated circuit did) or other binary encodings (such as the bi-quinary encoding of the 7490 integrated circuit). Alternatively, it may have a "fully decoded" or one-hot output code in which each output goes high in turn (the 4017 is such a circuit). The latter type of circuit finds applications in multiplexers and demultiplexers, or wherever a scanning type of behavior is useful. Similar counters with different numbers of outputs are also common. The decade counter is also known as a mod-counter when it counts to ten (0, 1, 2, 3, 4, 5, 6, 7, 8, 9). A Mod Counter that counts to 64 stops at 63 because 0 counts as a valid digit. 
-A decade counter has the count sequence 0 → 1 → 2 →.....→ 8 → 9 → 0.., which can be achieved by making R’ = (Q3 •Q1)’ for all the flip-flops in a 4-bit binary counter. This forces the counter to go to the state 0000 as soon as the counter makes the transition from the state 1001 representing count 9 to the next state 1010 according to the normal up counting sequence.
-
-### Decade synchronous counter:
-
-The logic for the J-K inputs required for a Decade Synchronous Counter is as follows: 
-J0 = K0 = 1; J1 = Q0•Q3’, K1 = Q0; J2 = K2 = Q0•Q1; J3 = Q0•Q1•Q2, K3 = Q0.
-
-### Multipurpose 4-bit Synchronous Counter:
-
-CD4029 is a multipurpose 4-bit counter capable of operating in all the four combinations of Binary/BCD and Up/Down modes, depending on the values of the control inputs B/D’ and U/D’. 
-In addition, the 4-bit output Q3Q2Q1Q0 of the counter can be preset to any value by applying the desired bits to the direct inputs D3D2D1D0 and making the Set ENable control SEN = 1. 
-
-![Image](http://cse15-iiith.vlabs.ac.in/images/CD4029codes.png)
 
 ## Objective:
 
-1. The objective of this experiment is to understand working of the counters.
-2. Try to make basic ripple counter and ring counter.
+1. The objective of this experiment is to understand working of the Register.
+2. Try to make basic SIPO SISO PISO and PIPO.
 
 ## Procedure:
 
-1. With The help of Theory Page , try to build the Counter Circuit.
-2. First of all build the basic counter .
-3. Then make the Ring Counter
+1. With The help of Theory Page , try to build the Register Circuit.
+2. First of all build the basic Register .
+3. Then make the Ring SISO
 4. If You are unable to make it , load the circuit directly and use it
 5. Use OSC frequence input to analyze the output
 
@@ -115,16 +101,7 @@ More circuits/tools have been added to the simulation, and premade circuit data 
 
 ### Files
 
-#### end.js
-
-##### Overview:
-Added more functionality to the existing module.
-
-##### Technicalities
-1. used the function registerDevice() which is defined in the module simcir to add more items/tools that are required by the simulation
-2. it's named end.js because it has to be run in the end, after all the js files, because it uses variables from the simcir module's js files
-
-#### main.js
+#### Circuitworking.js
 
 ##### Overview:
 This file manages all the local variables and remembers the settings to be applied on refreshes of the page.
@@ -135,10 +112,8 @@ This file manages all the local variables and remembers the settings to be appli
 3. Since the simcir library uses the json data provided at the start, and then replaces it by the simulation, we need to refresh the page and set new json data in the 'simcir' div.
 4. Different settings are stored in different key-value pairs in sessionStorage.
 	* 'OSCfreq' - The frequency of OSC
-	* '8bitCounter_module' - Checkbox of 8-bit-counter module 
-	* '8bitRingCounter_module' - Checkbox of 8-bit-ring-counter module 
-	* '8bitCounter' - Is true if the button "Load Counter" is clicked
-	* '8bitRingCounter' - Is true if the button "Load Ring Counter" is clicked
+	* 'SISO' - Is true if the button "Load SISO Register" is clicked
+	* 'SIPO' - Is true if the button "Load SIPO Register" is clicked
 5. The program first checks if there should be any circuit preloaded. If yes, then it checks all the settings and sets them up accordingly. If no, then it loads a blank simulation with the settings applied.
 6. The file also handles all the click events on the webpage to make the buttons interactable
 
@@ -156,33 +131,6 @@ Test case partially passed.
 
 ### Test Case 2
 
-#### Input of the frequency
-
-Input: words
-Output: not accepted
-
-Test case passed.
-
-### Test Case 3
-
-#### Input of the frequency
-
-Input: numbers between 1 and 10
-Output: accepted
-
-Test case passed.
-
-### Test Case 4
-
-#### Input of the frequency
-
-Input: numbers not in the range of 1-10
-Output: error shown
-
-Test case passed
-
-### Test Case 5
-
 #### Checkboxes
 
 Input: click
@@ -190,25 +138,7 @@ Output: toggle
 
 Test case passed.
 
-### Test Case 6
-
-#### Save Settings button
-
-Input: click
-Output: Page refresh with new settings applied
-
-Test case passed.
-
-### Test Case 7
-
-#### Clear Settings
-
-Input: click
-Output: page refresh with default settings 
-
-Test case passed.
-
-### Test Case 8
+### Test Case 3
 
 #### Load
 
@@ -217,16 +147,23 @@ Output: page refresh with couter loaded with no interaction(with settings intact
 
 Test case passed.
 
-### Test Case 9
+### Test Case 4
 
-#### Load Ring counter
+#### Load SISO Register
 
 Input: click
 Output: page refresh with ring couter loaded with no interaction(with settings intact).
 
 Test case passed.
+### Test Case 5
 
-### Test Case 10
+#### Load SIPO Register
+
+Input: click
+Output: page refresh with ring couter loaded with no interaction(with settings intact).
+
+Test case passed.
+### Test Case 6
 
 #### Clear Workspace
 
