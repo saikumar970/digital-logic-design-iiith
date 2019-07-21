@@ -4,26 +4,30 @@ Introduction:
 
 In digital logic and computing, a counter is a device which stores (and sometimes displays) the number of times a particular event or process has occurred, often in relationship to a clock signal. In this experiment, different types of counters will be studied, both for the full binary sequence and for cycle lengths (N) different from powers of 2.
 
-This project is a simulation of the counters made in Digital Logic Design(DLD). It has only 2 counters currently, the ripple counter, and the ring counter.
+This project is a simulation of the Registers made in Digital Logic Design(DLD). It has only 2 counters currently, the SISO, and the SIPO.
 ---
 
-### Counters
+### Registers
 
-Usually, counter circuits are digital in nature, and count in natural binary. Many types of counter circuits are available as digital building blocks, for example a number of chips in the 4000 series implement different counters. Occasionally there are advantages to using a counting sequence other than the natural binary sequence such as the binary coded decimal counter, a linear feedback shift register counter, or a Gray-code counter. Counters are useful for digital clocks and timers, and in oven timers, VCR clocks, etc. 
-The counters will be assembled using two 74LS73 dual J-K flip-flop chips and a 74LS02 quad NOR chip. Note that each flip-flop has an asynchronous Reset (R’) input besides the synchronous J-K inputs. This enables one to reset any of the flip-flops by making R’ = 0 irrespective of the status of the clock (CK) input. The asynchronous R’ input will be utilised in this experiment to initialise the flip-flop outputs as well as to obtain counters having cycle length N is less than 16.
+Flip flops can be used to store a single bit of binary data (1or 0). However, in order to store multiple bits of data, we need multiple flip flops. N flip flops are to be connected in an order to store n bits of data. A Register is a device which is used to store such information. It is a group of flip flops connected in series used to store multiple bits of data.
 
-#### Pin Connections:
+The information stored within these registers can be transferred with the help of shift registers. Shift Register is a group of flip flops used to store multiple bits of data. The bits stored in such registers can be made to move within the registers and in/out of the registers by applying clock pulses. An n-bit shift register can be formed by connecting n flip-flops where each flip flop stores a single bit of data.
+The registers which will shift the bits to left are called “Shift left registers”.
+The registers which will shift the bits to right are called “Shift right registers”.
+Shift registers are basically of 4 types. These are:
 
-![Image](http://cse15-iiith.vlabs.ac.in/images/counters.png)
+    1.Serial In Serial Out shift register
+    2.Serial In parallel Out shift register
+    3.Parallel In Serial Out shift register
+    4.Parallel In parallel Out shift register
+    
+### Serial-In Serial-Out Shift Register (SISO) –
+1. The shift register, which allows serial input (one bit after the other through a single data line) and produces a serial output is known as Serial-In Serial-Out shift register. Since there is only one output, the data leaves the shift register one bit at a time in a serial pattern, thus the name Serial-In Serial-Out Shift Register.
 
+2. The logic circuit given below shows a serial-in serial-out shift register. The circuit consists of four D flip-flops which are connected in a serial manner. All these flip-flops are synchronous with each other since the same clock signal is applied to each flip flop. 
 
-### Binary Ripple Counter
-1. Make J = K = 1 for all the flip-flops, thereby converting the J-K flip-flops to T flip-flops. Connect all R’ inputs together to an Input Switch, and the outputs Q0,Q1,Q2,Q3 to four LED Displays. 
-
-2. Set up an Up-counting Binary Ripple Counter by making clock connections as follows: CK0 = Manual Clock (CLK-M), CK1 = Q0, CK2 = Q1, CK3 = Q2. 
-
-3. Using the Input Switch connected to the common R’ input, initialise the counter to the stat 
-
+3. The below circuit is an example of shift right register, taking the serial data input from the left side of the flip flop. The main use of a SISO is to act as a delay element.
+![Image](http://cse15-iiith.vlabs.ac.in/images/CD4029codes.png)
 4. Apply Manual Clock pulses and tabulate the state sequence for the entire cycle. 
 
 5. Now change the clock input connections to CK1 = Q0’, CK2 = Q1’, CK3 = Q2’, to obtain a Down-counting Binary Ripple counter. 
