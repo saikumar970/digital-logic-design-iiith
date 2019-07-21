@@ -1,4 +1,4 @@
-# Documentation For SRIP Project(DLD-Registers)
+# Documentation For SRIP Project(DLD-State Diagrams)
  
 ### Introduction
 We have examined a general model for sequential circuits. In this model the effect of all previous inputs on the outputs is represented by a state of the circuit. Thus, the output of the circuit at any time depends upon its current state and the input. These also determine the next state of the circuit. The relationship that exists among the inputs, outputs, present states and next states can be specified by either the state table or the state diagram.
@@ -31,38 +31,53 @@ The next step is to design a State Diagram. This is a diagram that is made from 
 Make a note that this is a Moore Finite State Machine. Its output is a function of only its current state, not its input. That is in contrast with the Mealy Finite State Machine, where input affects the output. In this tutorial, only the Moore Finite State Machine will be examined. 
 The State Diagram of our circuit is the following: (Figure below)
    ![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_Project_1/Codes/images/basic1.webp)
-### Serial-In Serial-Out Shift Register (SISO) –
-1. The shift register, which allows serial input (one bit after the other through a single data line) and produces a serial output is known as Serial-In Serial-Out shift register. Since there is only one output, the data leaves the shift register one bit at a time in a serial pattern, thus the name Serial-In Serial-Out Shift Register.
+   
+   Every circle represents a “state”, a well-defined condition that our machine can be found at.
+In the upper half of the circle we describe that condition. The description helps us remember what our circuit is supposed to do at that condition.
+1.The first circle is the “stand-by” condition. This is where our circuit starts from and where it waits for another button press.
+2.The second circle is the condition where the button has just been just pressed and our circuit needs to transmit a HIGH pulse.
+3.The third circle is the condition where our circuit waits for the button to be released before it returns to the “stand-by” condition.
+4.Every arrow represents a “transition” from one state to another. A transition happens once every clock cycle. Depending on the current Input, we may go to a different state each time. Notice the number in the middle of every arrow. This is the current Input.
+### Step3: 
+1.Next, we replace the words that describe the different states of the diagram with binary numbers. We start the enumeration from 0 which is assigned on the initial state. We then continue the enumeration with any state we like, until all states have their number. The result looks something like this: (Figure below)
 
-2. The logic circuit given below shows a serial-in serial-out shift register. The circuit consists of four D flip-flops which are connected in a serial manner. All these flip-flops are synchronous with each other since the same clock signal is applied to each flip flop. 
+ ![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_Project_1/Codes/images/bacis_state.webp) 
 
-3. The below circuit is an example of shift right register, taking the serial data input from the left side of the flip flop. The main use of a SISO is to act as a delay element.
-![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP/Codes/images/SISO_DOC.png)
+### Step4:
 
-### Serial-In Parallel-Out shift Register (SIPO) –:
+Afterwards, we fill the State Table. This table has a very specific form. I will give the table of our example and use it to explain how to fill it in. (Figure below) 
 
-The shift register, which allows serial input (one bit after the other through a single data line) and produces a parallel output is known as Serial-In Parallel-Out shift register.
-
-The logic circuit given below shows a serial-in-parallel-out shift register. The circuit consists of four D flip-flops which are connected. The clear (CLR) signal is connected in addition to the clock signal to all the 4 flip flops in order to RESET them. The output of the first flip flop is connected to the input of the next flip flop and so on. All these flip-flops are synchronous with each other since the same clock signal is applied to each flip flop.
-The below circuit is an example of shift right register, taking the serial data input from the left side of the flip flop and producing a parallel output. They are used in communication lines where demultiplexing of a data line into several parallel lines is required because the main use of the SIPO register is to convert serial data into parallel data.
-![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP/Codes/images/SIPO_DOC.png)
-
-### Parallel-In Serial-Out Shift Register (PISO):
-
-The shift register, which allows parallel input (data is given separately to each flip flop and in a simultaneous manner) and produces a serial output is known as Parallel-In Serial-Out shift register.
-
-The logic circuit given below shows a parallel-in-serial-out shift register. The circuit consists of four D flip-flops which are connected. The clock input is directly connected to all the flip flops but the input data is connected individually to each flip flop through a multiplexer at the input of every flip flop. The output of the previous flip flop and parallel data input are connected to the input of the MUX and the output of MUX is connected to the next flip flop. All these flip-flops are synchronous with each other since the same clock signal is applied to each flip flop.
-A Parallel in Serial out (PISO) shift register us used to convert parallel data to serial data. 
-
-![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP/Codes/images/PISO_DOC.jpg)
-### Parallel-In Parallel-Out Shift Register (PIPO):
-
-The shift register, which allows parallel input (data is given separately to each flip flop and in a simultaneous manner) and also produces a parallel output is known as Parallel-In parallel-Out shift register.
-
-The logic circuit given below shows a parallel-in-parallel-out shift register. The circuit consists of four D flip-flops which are connected. The clear (CLR) signal and clock signals are connected to all the 4 flip flops. In this type of register, there are no interconnections between the individual flip-flops since no serial shifting of the data is required. Data is given as input separately for each flip flop and in the same way, output also collected individually from each flip flop.
-![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP/Codes/images/PIPO_DOC.png)
+ ![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_Project_1/Codes/images/state_truth_table.webp)
+ 1.First we will examine how we implement our “Machine” with D-Flip Flops.
+ ![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_Project_1/Codes/images/state_truth_withD.webp)
 
 
+### Step5:
+
+We are in the final stage of our procedure. What remains, is to determine the Boolean functions that produce the inputs of our Flip Flops and the Output. We will extract one Boolean funtion for each Flip Flop input we have. This can be done with a Karnaugh Map. The input variables of this map are the Current State variables as well as the Inputs.
+
+That said, the input functions for our D - Flip Flops are the following:
+
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_Project_1/Codes/images/Dff%20Kmaps.webp)
+
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_Project_1/Codes/images/eqns.webp)
+### Step6:
+
+A Karnaugh Map will be used to determine the function of the Output as well: (Figure below)
+
+
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_Project_1/Codes/images/Youtput.webp)
+
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_Project_1/Codes/images/yqn.webp)
+
+### Step7:
+
+ We design our circuit. We place the Flip Flops and use logic gates to form the Boolean functions that we calculated. The gates take input from the output of the Flip Flops and the Input of the circuit. Don’t forget to connect the clock to the Flip Flops!
+
+The D - Flip Flop version: (Figure below)
+![Image](https://github.com/saikumar970/digital-logic-design-iiith/blob/master/SRIP_Project_1/Codes/images/Final%20Circuit.webp)
+
+This is it! We have successfully designed and constructed a Sequential Circuit.
 ## Objective:
 
 1. The objective of this experiment is to understand working of the Register.
